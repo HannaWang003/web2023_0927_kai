@@ -20,6 +20,7 @@
 
   <body>
     <script>
+      //第一種方法
       let data = [3, 5, 5, 6, 3, 5, 10];
       console.log("data = ", data);
       let newData = [];
@@ -27,6 +28,16 @@
         newData.push(Number(val) * 2);
       });
       console.log("newData = ", newData);
+      //第二種方法 array method - .map()
+      let newMapData = [];
+      newMapData = data.map((val) => {
+        if (val <= 5) {
+          return val * 2;
+        } else {
+          return val;
+        }
+      });
+      console.log("newMapData", newMapData);
     </script>
   </body>
 </html>
