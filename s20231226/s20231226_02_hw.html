@@ -68,9 +68,9 @@
         Od.push(Order.value);
         Pe.push(Price.value);
         Qy.push(Qty.value);
-        Pe.forEach((val, key) => {
-          sum += Number(val);
-          qtysum += Number(val) * Number(Qy[key]);
+        Qy.forEach((val, key) => {
+          qtysum += Number(val);
+          sum += Number(val) * Number(Pe[key]);
         });
         console.log(Od.length);
         console.log(sum);
