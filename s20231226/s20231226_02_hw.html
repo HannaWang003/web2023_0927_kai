@@ -28,6 +28,10 @@
         <label for="">price</label>
         <input type="text" class="form-control" id="price" />
       </div>
+      <div class="row col-6">
+        <label for="">Qty</label>
+        <input type="text" class="form-control" id="qty" />
+      </div>
       <button
         type="button"
         class="btn btn-info mt-3"
@@ -37,9 +41,11 @@
         送出訂單
       </button>
       <div class="row mt-5">
-        <h3 id="qty"></h3>
+        <h3 id="orderQ"></h3>
         <h1>全部訂單總額</h1>
         <div id="total"></div>
+        <h1>全部訂單總量</h1>
+        <div id="qtotal"></div>
       </div>
     </div>
 
@@ -48,21 +54,29 @@
       let Price = document.getElementById("price");
       let MyBtn = document.getElementById("myBtn");
       let Total = document.getElementById("total");
+      let QTotal = document.getElementById("qtotal");
       let Qty = document.getElementById("qty");
+      let OrderQ = document.getElementById("orderQ");
       let Od = [];
       let Pe = [];
+      let Qy = [];
       let sum = "";
+      let qtysum = "";
       function enter() {
         sum = Number(0);
+        qtysum = Number(0);
         Od.push(Order.value);
         Pe.push(Price.value);
+        Qy.push(Qty.value);
         Pe.forEach((val, key) => {
           sum += Number(val);
+          qtysum += Number(val) * Number(Qy[key]);
         });
         console.log(Od.length);
         console.log(sum);
         Total.innerHTML = `<div class='text-warning fs-3'>${sum}</div>`;
-        Qty.innerHTML = `訂單數:${Od.length}`;
+        QTotal.innerHTML = `<div class='text-warning fs-3'>${qtysum}</div>`;
+        OrderQ.innerHTML = `訂單數:${Od.length}`;
       }
     </script>
   </body>
