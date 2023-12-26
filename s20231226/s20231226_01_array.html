@@ -15,6 +15,11 @@
         let result = Array.isArray(strArr);
         console.log("strArr is array?", result);
         console.log(typeof result);
+
+        console.log("以下是forEach結果:");
+        strArr.forEach((val, idx) => {
+          console.log(idx + ":", val);
+        });
       }
     </script>
   </body>
