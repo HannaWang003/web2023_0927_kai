@@ -33,10 +33,15 @@
         console.log("myObj", typeof myObj);
         let resultObj = Array.isArray(myObj);
         console.log("myObj is array?", resultObj);
-        console.log("以下是object forEach結果:");
-        myObj.forEach((val, idx) => {
-          console.log(idx + ":", val);
-        });
+        // console.log("以下是object forEach結果:");
+        // myObj.forEach((val, idx) => {
+        //   console.log(idx + ":", val);
+        // });
+        console.log("以下是object for( in )結果:");
+        for (const key in myObj) {
+          console.log("key", key);
+          console.log(`${key}=`, `${myObj[key]}`);
+        }
       }
     </script>
   </body>
