@@ -16,8 +16,25 @@
         console.log("strArr is array?", result);
         console.log(typeof result);
 
-        console.log("以下是forEach結果:");
+        console.log("以下是array forEach結果:");
         strArr.forEach((val, idx) => {
+          console.log(idx + ":", val);
+        });
+      }
+      //
+      b();
+      function b() {
+        let myObj = {
+          s1: "amy",
+          s2: "bob",
+          s3: "caty",
+        };
+        console.log("myObj", myObj);
+        console.log("myObj", typeof myObj);
+        let resultObj = Array.isArray(myObj);
+        console.log("myObj is array?", resultObj);
+        console.log("以下是object forEach結果:");
+        myObj.forEach((val, idx) => {
           console.log(idx + ":", val);
         });
       }
