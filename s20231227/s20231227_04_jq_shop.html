@@ -122,17 +122,15 @@
         let item = $(".item");
         Num.change(function () {
           let num = Num.val();
-          console.log(Num.keyOf);
-          let price = Price.eq().val();
-          console.log(price);
-          console.log(num);
+          let key = $(this).index(".Num");
+          let price = Price.eq(key).val();
           let result = price * num;
-          item.eq().text(result);
+          item.eq(key).text(result);
         });
         myBtn.click(function () {
           let totalAll = 0;
-          item.forEach((val, key) => {
-            totalAll += Number(val.innerText);
+          item.each((val, key) => {
+            totalAll += Number(val.text());
             if (totalAll >= 60000) {
               total.text(totalAll * 0.9);
               dis.text(totalAll * 0.1);
