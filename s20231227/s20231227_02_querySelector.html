@@ -43,6 +43,9 @@
         console.log(key, val);
         let getText = val.innerText;
         console.log(getText);
+        val.addEventListener("click", function () {
+          console.log(getText, "click ok");
+        });
       });
     </script>
   </body>
