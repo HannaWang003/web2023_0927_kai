@@ -20,7 +20,8 @@
 
   <body>
     <button type="button" id="myBtn">myBtn</button>
-    <button type="button" id="myBtn2" onclick="myBtn2Fun()">myBtn2</button>
+    <button type="button" id="myBtn2" onclick="myBtn2Fun(this)">myBtn2</button>
+    <!-- <button type="button" id="myBtn2" onclick="myBtn2Fun()">myBtn2</button> -->
 
     <script>
       const myBtn = document.getElementById("myBtn");
@@ -29,9 +30,10 @@
         console.log("myBtn clicked");
       });
       //onclick
-      function myBtn2Fun() {
+      function myBtn2Fun(data) {
         console.log("myBtn2-1 ok");
         console.log("myBtn2-2 ok");
+        console.log("this is", data);
       }
     </script>
   </body>
