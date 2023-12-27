@@ -25,9 +25,15 @@
   </head>
 
   <body>
+    <button type="button" id="myBtn">myBtn</button>
     <script>
-      //啟用jquery
-      $("document").ready(function () {});
+      //.ready可以確保整頁載入後，再開始執行jquery, 網頁才不會報錯
+      $("document").ready(function () {
+        const myBtn = $("#myBtn");
+        console.log("jquery", myBtn);
+        const myBtnJs = document.getElementById("myBtn");
+        console.log("js", myBtnJs);
+      });
     </script>
   </body>
 </html>
