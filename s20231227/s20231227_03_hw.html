@@ -27,7 +27,7 @@
       text-align: center;
     }
     button {
-      box-shadow: 0 0 5px black;
+      box-shadow: inset 2px 2px 5px rgb(0, 0, 0);
     }
   </style>
   <body>
@@ -50,8 +50,9 @@
                 type="number"
                 name=""
                 id="item1Price"
-                value="0"
+                value="5000"
                 class="form-control"
+                readonly
               />
             </td>
             <td>
@@ -63,7 +64,7 @@
                 class="form-control"
               />
             </td>
-            <td><span id="item1"></span></td>
+            <td class="text-center"><span id="item1"></span></td>
           </tr>
           <tr>
             <th scope="row"><img src="./img/2.jpg" alt="" /></th>
@@ -72,8 +73,9 @@
                 type="number"
                 name=""
                 id="item2Price"
-                value="0"
+                value="15000"
                 class="form-control"
+                readonly
               />
             </td>
             <td>
@@ -85,7 +87,7 @@
                 class="form-control"
               />
             </td>
-            <td><span id="item2"></span></td>
+            <td class="text-center"><span id="item2"></span></td>
           </tr>
           <tr>
             <th scope="row"><img src="./img/3.jpg" alt="" /></th>
@@ -94,8 +96,9 @@
                 type="number"
                 name=""
                 id="item3Price"
-                value="0"
+                value="6000"
                 class="form-control"
+                readonly
               />
             </td>
             <td>
@@ -107,7 +110,7 @@
                 class="form-control"
               />
             </td>
-            <td><span id="item3"></span></td>
+            <td class="text-center"><span id="item3"></span></td>
           </tr>
           <tr>
             <th class="bg-light">Gross Sales</th>
@@ -117,8 +120,8 @@
               ><span id="dis"></span>
             </td>
             <td class="text-end bg-secondary bg-opacity-10">
-              <button type="button" id="myBtn" class="btn btn-light">
-                500 up 10% discount
+              <button type="button" id="myBtn" class="btn p-3">
+                60,000 up 10% discount
               </button>
             </td>
           </tr>
@@ -195,7 +198,7 @@
           Number(item1.innerText) +
           Number(item2.innerText) +
           Number(item3.innerText);
-        if (totalAll >= 500) {
+        if (totalAll >= 60000) {
           total.innerText = totalAll * 0.9;
           dis.innerText = totalAll * 0.1;
         } else {
