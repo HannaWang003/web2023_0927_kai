@@ -25,14 +25,18 @@
   </head>
 
   <body>
-    <button type="button" id="myBtn" class="m-5 btn btn-primary">myBtn</button>
+    <button type="button" class="myBtn m-5 btn btn-primary">myBtn1</button>
+    <button type="button" class="myBtn m-5 btn btn-primary">myBtn2</button>
     <script>
       //.ready可以確保整頁載入後，再開始執行jquery, 網頁才不會報錯
       $(function () {
-        const myBtn = $("#myBtn");
+        const myBtn = $(".myBtn");
         // myBtn.hide();
-        myBtn.click(function () {
-          alert("myBtn ok");
+        myBtn.click(function (e) {
+          //this會是js的element, 要加上$(this)才會變成jq的物件，也才能使用jq的函式
+          console.log("this", $(this));
+          // $(this).hide();
+          $(this).text("clicked");
         });
       });
     </script>
