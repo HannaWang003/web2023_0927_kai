@@ -28,6 +28,12 @@
     .bg-blue {
       background: lightblue;
     }
+    .br-20 {
+      border: 20px solid darkcyan !important;
+    }
+    .br-golden {
+      border: 1px solid darkgoldenrod;
+    }
   </style>
   <body>
     <div class="container mt-5">
@@ -40,9 +46,13 @@
     <div class="container mt-5">
       <div class="bg-blue" id="box"></div>
     </div>
+    <div class="container mt-5">
+      <input type="text" name="" id="myInput" class="form-control" />
+    </div>
     <script>
       const myBtn = document.getElementById("myBtn");
       const Box = document.getElementById("box");
+      const myInput = document.getElementById("myInput");
       //1 addEventListener
       myBtn.addEventListener("click", () => {
         console.log("myBtn clicked");
@@ -50,11 +60,12 @@
       myBtn.addEventListener("mouseenter", () => {
         console.log("mouseenter ok");
       });
-      //mouseout
+      //mouseenter
       Box.addEventListener("mouseenter", function () {
         console.log(this);
         this.setAttribute("class", "bg-pink");
       });
+      //mouseout
       Box.addEventListener("mouseout", function () {
         this.setAttribute("class", "bg-blue");
       });
@@ -64,6 +75,15 @@
         console.log("myBtn2-2 ok");
         console.log("this is", data);
       }
+      //form input
+      myInput.addEventListener("focus", function () {
+        console.log("focus", this);
+        this.setAttribute("class", "form-control br-20");
+      });
+      myInput.addEventListener("blur", function () {
+        console.log("blur", this);
+        this.setAttribute("class", "form-control br-golden");
+      });
     </script>
   </body>
 </html>
