@@ -51,10 +51,11 @@
         console.log("mouseenter ok");
       });
       //mouseout
-      Box.addEventListener("mouseenter", () => {
+      Box.addEventListener("mouseenter", function () {
+        console.log(this);
         this.setAttribute("class", "bg-pink");
       });
-      Box.addEventListener("mouseout", () => {
+      Box.addEventListener("mouseout", function () {
         this.setAttribute("class", "bg-blue");
       });
       //onclick
