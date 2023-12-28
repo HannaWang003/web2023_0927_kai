@@ -120,17 +120,23 @@
         const Price = $(".Price");
         const Num = $(".Num");
         let item = $(".item");
+        let myBtn = $("#myBtn");
         Num.change(function () {
-          let num = Num.val();
+          //先找出key
           let key = $(this).index(".Num");
+          //再去抓數量的值 & 金額的值
+          let num = Num.eq(key).val();
           let price = Price.eq(key).val();
+          // console.log(num);
+          // console.log(key);
           let result = price * num;
           item.eq(key).text(result);
         });
         myBtn.click(function () {
           let totalAll = 0;
-          item.each((val, key) => {
-            totalAll += Number(val.text());
+          $.each(item, function (key, val) {
+            console.log(key, $(val).text());
+            totalAll += Number($(val).text());
             if (totalAll >= 60000) {
               total.text(totalAll * 0.9);
               dis.text(totalAll * 0.1);
