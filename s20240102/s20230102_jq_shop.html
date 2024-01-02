@@ -133,8 +133,8 @@
             <td>總額</td>
             <td><span id="sum"></span></td>
             <td>
-              <button class="btn btn-info" id="myBtn">
-                計算(5000 10% discount)
+              <button class="btn btn-secondary" id="myBtn">
+                計算(1000 10% discount)
               </button>
             </td>
             <td><span id="dis"></span></td>
@@ -156,9 +156,11 @@
           $.each(myTotal, function (key, value) {
             total += Number($(value).val());
           });
-          if (total >= 5000) {
+          if (total >= 1000) {
             sum.text(total * 0.9);
-            dis.text(total * 0.1);
+            disResult = "取得折扣" + total * 0.1;
+            dis.text(disResult);
+            dis.attr("class", "bg-danger text-light p-3 rounded-pill");
           } else {
             sum.text(total);
             dis.text(0);
@@ -170,7 +172,6 @@
         const myTotal = $(".my-total");
         const sum = $("#sum");
         const dis = $("#dis");
-        sumFun();
         myNum.change(function () {
           let trObj = $(this).parent().parent();
           let nowPrice = trObj.find(".my-price");
