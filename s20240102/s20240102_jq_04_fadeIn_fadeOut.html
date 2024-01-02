@@ -120,8 +120,10 @@
           let getDataPage = $(this).attr("data-page");
           myBtn.attr("style", "z-index:0");
           $(this).attr("style", "z-index:10");
-          box.hide();
-          $(getDataPage).show();
+          box.fadeOut(2000);
+          setTimeout(function () {
+            $(getDataPage).fadeIn(3000);
+          }, 2000);
         });
 
         //我的寫法
