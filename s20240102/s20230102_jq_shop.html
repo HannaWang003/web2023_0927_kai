@@ -45,7 +45,7 @@
               <!-- readonly不能被使用者輸入 -->
               <input
                 type="number"
-                class="form-control"
+                class="form-control my-price"
                 id="item1Price"
                 value="100"
                 readonly
@@ -54,7 +54,7 @@
             <td>
               <input
                 type="number"
-                class="form-control"
+                class="form-control my-num"
                 id="item1Num"
                 value="1"
               />
@@ -63,7 +63,7 @@
               <!-- readonly不能被使用者輸入 -->
               <input
                 type="number"
-                class="form-control"
+                class="form-control my-total"
                 id="item1Total"
                 value="100"
                 readonly
@@ -82,14 +82,19 @@
     <script>
       //啟用jquery
       $("document").ready(function () {
-        const item1Price = $("#item1Price");
-        const item1Num = $("#item1Num");
-        const item1Total = $("#item1Total");
-        item1Num.change(() => {
-          let getItem1Price = Number(item1Price.val());
-          let getItem1Num = Number(item1Num.val());
-          let resultTotal = getItem1Price * getItem1Num;
-          item1Total.val(resultTotal);
+        const myPrice = $(".my-price");
+        const myNum = $(".my-num");
+        const myTotal = $(".my-total");
+        myNum.change(() => {
+          let trObj = $(this).paretn().parent();
+          let nowPrice = trObj.find(".my-price");
+          let nowNum = trObj.find(".my-num");
+          let nowTotal = trObj.find(".my-total");
+
+          let getPrice = Number(nowPrice.val());
+          let getNum = Number(nowNum.val());
+          let resultTotal = getPrice * getNum;
+          nowTotal.val(resultTotal);
         });
       });
     </script>
