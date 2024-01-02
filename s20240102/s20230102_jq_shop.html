@@ -85,12 +85,11 @@
         const myPrice = $(".my-price");
         const myNum = $(".my-num");
         const myTotal = $(".my-total");
-        myNum.change(() => {
-          let trObj = $(this).paretn().parent();
+        myNum.change(function () {
+          let trObj = $(this).parent().parent();
           let nowPrice = trObj.find(".my-price");
           let nowNum = trObj.find(".my-num");
           let nowTotal = trObj.find(".my-total");
-
           let getPrice = Number(nowPrice.val());
           let getNum = Number(nowNum.val());
           let resultTotal = getPrice * getNum;
