@@ -18,9 +18,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <style>
+    .container {
+      overflow: hidden;
+    }
     .box {
       width: 300px;
       height: 300px;
+    }
+    .myBtn {
+      border-radius: 20px 20px 0 0;
+      margin-right: -20px;
     }
   </style>
   <body>
@@ -50,13 +57,13 @@
         <button
           data-page="#page4"
           type="button"
-          class="col myBtn border-0 bg-primary"
+          class="col myBtn border bg-primary"
         >
           4
         </button>
       </div>
       <div class="row">
-        <div class="col box bg-danger" id="page1">
+        <div class="col box border border-5 border-danger" id="page1">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore sed
           optio, voluptatem quisquam vero unde odit minus officia atque laborum,
           ea sit laboriosam vitae veritatis eligendi, magnam laudantium minima
@@ -65,13 +72,13 @@
           exercitationem atque, aspernatur, a rem recusandae doloribus
           reiciendis! Inventore velit magnam quos est dolorem id?
         </div>
-        <div class="col box bg-info" id="page2">
+        <div class="col box border border-5 border-info" id="page2">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
           deleniti, quae nihil quos quo velit explicabo tempore nisi laborum
           architecto laudantium optio necessitatibus unde eius sint aliquam
           dolorum iste dicta.
         </div>
-        <div class="col box bg-warning" id="page3">
+        <div class="col box border border-5 border-warning" id="page3">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo
           provident maiores quis perspiciatis doloribus nam, iusto natus fuga
           nesciunt est quos molestiae minus asperiores alias eligendi doloremque
@@ -83,7 +90,7 @@
           inventore cupiditate aperiam quis mollitia. Harum nesciunt dolores ad
           quod nam numquam, nostrum amet officiis.
         </div>
-        <div class="col box bg-primary" id="page4">
+        <div class="col box border border-5 border-primary" id="page4">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur
           at, reiciendis minima perspiciatis debitis perferendis? Deleniti
           pariatur corporis laborum, ipsum enim beatae voluptate harum, ipsam
@@ -107,8 +114,12 @@
         const myBtn = $(".myBtn");
         const box = $(".box");
         box.hide();
+        box.eq(0).show();
+
         myBtn.click(function () {
           let getDataPage = $(this).attr("data-page");
+          myBtn.attr("style", "z-index:0");
+          $(this).attr("style", "z-index:10");
           box.hide();
           $(getDataPage).show();
         });
