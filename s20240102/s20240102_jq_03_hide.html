@@ -21,24 +21,52 @@
     .box {
       width: 300px;
       height: 300px;
-      background: lightsalmon;
     }
   </style>
   <body>
     <div class="container mt-5">
+      <div class="row justify-content-between">
+        <button type="button" class="col myBtn border-0 bg-danger">1</button>
+        <button type="button" class="col myBtn border-0 bg-info">2</button>
+        <button type="button" class="col myBtn border-0 bg-warning">3</button>
+        <button type="button" class="col myBtn border-0 bg-primary">4</button>
+      </div>
       <div class="row">
-        <div class="col">
-          <div id="myBox" class="box"></div>
+        <div class="col box bg-danger">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore sed
+          optio, voluptatem quisquam vero unde odit minus officia atque laborum,
+          ea sit laboriosam vitae veritatis eligendi, magnam laudantium minima
+          error. Ducimus veritatis voluptates autem repudiandae. Dolorum,
+          accusamus. Illum est minima fuga ipsa culpa praesentium cupiditate
+          exercitationem atque, aspernatur, a rem recusandae doloribus
+          reiciendis! Inventore velit magnam quos est dolorem id?
         </div>
-        <div class="col">
-          <div class="d-grid gap-2">
-            <button id="showBtn" type="button" class="btn btn-primary">
-              showButton
-            </button>
-            <button id="hideBtn" type="button" class="btn btn-warning">
-              hideButton
-            </button>
-          </div>
+        <div class="col box bg-info">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+          deleniti, quae nihil quos quo velit explicabo tempore nisi laborum
+          architecto laudantium optio necessitatibus unde eius sint aliquam
+          dolorum iste dicta.
+        </div>
+        <div class="col box bg-warning">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo
+          provident maiores quis perspiciatis doloribus nam, iusto natus fuga
+          nesciunt est quos molestiae minus asperiores alias eligendi doloremque
+          dolore placeat ex? Dolore ex nam, aliquam a adipisci nulla ratione
+          atque cupiditate iure sapiente commodi natus officia eligendi odio
+          similique laboriosam eius enim eveniet ad laborum consequatur? Quos
+          voluptates ipsum fugit reiciendis? Libero labore adipisci error nam
+          nisi commodi tempora sapiente ea consequatur, minus ut facere corporis
+          inventore cupiditate aperiam quis mollitia. Harum nesciunt dolores ad
+          quod nam numquam, nostrum amet officiis.
+        </div>
+        <div class="col box bg-primary">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur
+          at, reiciendis minima perspiciatis debitis perferendis? Deleniti
+          pariatur corporis laborum, ipsum enim beatae voluptate harum, ipsam
+          cumque earum incidunt laboriosam magni. Eligendi, laboriosam quos
+          minus quasi maiores iure? Itaque maiores earum at quae eaque
+          inventore, labore quam maxime ipsam porro? Quibusdam sequi similique
+          temporibus eum dolores. Maiores quod officiis minus itaque.
         </div>
       </div>
     </div>
@@ -51,15 +79,20 @@
     <script>
       //啟用jquery
       $("document").ready(function () {
-        const myBox = $("#myBox");
-        const showBtn = $("#showBtn");
-        const hideBtn = $("#hideBtn");
+        const box = $(".box");
+        const myBtn = $(".myBtn");
 
-        showBtn.click(function () {
-          myBox.show();
-        });
-        hideBtn.click(function () {
-          myBox.hide();
+        box.hide();
+        box.eq(0).show();
+
+        myBtn.click(function () {
+          box.each(function () {
+            box.hide();
+            myBtn.removeClass("text-light");
+          });
+          let key = $(this).index(".myBtn");
+          box.eq(key).show();
+          myBtn.eq(key).addClass("text-light");
         });
       });
     </script>
