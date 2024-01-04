@@ -19,13 +19,15 @@
   </head>
 
   <body>
-    <div class="container mt-5 text-center">
+    <div class="container-fluid mt-5 text-center">
       <!-- list 1 -->
       <div class="row align-items-center mt-2">
         <div class="col-sm-3">
           <input class="form-control Num1" type="number" name="" />
         </div>
-        <div class="col-sm-1"><select name="" class="mySelect"></select></div>
+        <div class="col-sm-1">
+          <select name="" class="mySelect form-select"></select>
+        </div>
         <div class="col-sm-3">
           <input class="form-control Num2" type="number" name="" />
         </div>
@@ -48,13 +50,15 @@
         <div class="col-sm-3">
           <input class="form-control Num1" type="number" name="" />
         </div>
-        <div class="col-sm-1"><select name="" class="mySelect"></select></div>
+        <div class="col-sm-1">
+          <select name="" class="mySelect form-select"></select>
+        </div>
         <div class="col-sm-3">
           <input class="form-control Num2" type="number" name="" />
         </div>
         <div class="col-sm-2">
           <div class="d-grid">
-            <button type="button" class="myBtn btn btn-info">=</button>
+            <button type="button" class="myBtn btn btn-primary">=</button>
           </div>
         </div>
         <div class="col-sm-3">
@@ -71,13 +75,15 @@
         <div class="col-sm-3">
           <input class="form-control Num1" type="number" name="" />
         </div>
-        <div class="col-sm-1"><select name="" class="mySelect"></select></div>
+        <div class="col-sm-1">
+          <select name="" class="mySelect form-select"></select>
+        </div>
         <div class="col-sm-3">
           <input class="form-control Num2" type="number" name="" />
         </div>
         <div class="col-sm-2">
           <div class="d-grid">
-            <button type="button" class="myBtn btn btn-warning">=</button>
+            <button type="button" class="myBtn btn btn-primary">=</button>
           </div>
         </div>
         <div class="col-sm-3">
@@ -94,13 +100,15 @@
         <div class="col-sm-3">
           <input class="form-control Num1" type="number" name="" />
         </div>
-        <div class="col-sm-1"><select name="" class="mySelect"></select></div>
+        <div class="col-sm-1">
+          <select name="" class="mySelect form-select"></select>
+        </div>
         <div class="col-sm-3">
           <input class="form-control Num2" type="number" name="" />
         </div>
         <div class="col-sm-2">
           <div class="d-grid">
-            <button type="button" class="myBtn btn btn-light">=</button>
+            <button type="button" class="myBtn btn btn-primary">=</button>
           </div>
         </div>
         <div class="col-sm-3">
@@ -123,7 +131,8 @@
       //啟用jquery
       $(function () {
         let mySelect = $(".mySelect");
-        mySelect.html(`<option>+</option>
+        mySelect.html(`<option>-請選擇-</option>
+        <option>+</option>
                              <option>-</option>
                              <option>x</option>
                              <option>/</option>
