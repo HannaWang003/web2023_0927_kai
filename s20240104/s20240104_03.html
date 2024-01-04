@@ -130,20 +130,20 @@
     <script>
       //啟用jquery
       $(function () {
-        let mySelect = $(".mySelect");
+        const mySelect = $(".mySelect");
         mySelect.html(`<option>-請選擇-</option>
         <option>+</option>
                              <option>-</option>
                              <option>x</option>
                              <option>/</option>
                              `);
-        let myBtn = $(".myBtn");
+        const myBtn = $(".myBtn");
         myBtn.click(function () {
-          let parent = $(this).parent().parent().parent();
+          const parent = $(this).parent().parent().parent();
           console.log(parent);
-          let getNum1Val = Number(parent.find(".Num1").val());
-          let getNum2Val = Number(parent.find(".Num2").val());
-          let mySelect = parent.find(".mySelect").val();
+          const getNum1Val = Number(parent.find(".Num1").val());
+          const getNum2Val = Number(parent.find(".Num2").val());
+          const mySelect = parent.find(".mySelect").val();
           switch (mySelect) {
             case "+":
               parent.find(".result").val(getNum1Val + getNum2Val);
