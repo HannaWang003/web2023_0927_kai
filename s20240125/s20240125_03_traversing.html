@@ -28,8 +28,8 @@
         <div class="col">
           <div class="border border-primary p-3">
             div
-            <ul class="border border-success p-3">
-              ul
+            <ol class="border border-success p-3">
+              ol
               <li class="border border-warning p-3" data-name="li1">
                 li
                 <span class="border border-danger p-3"> hello span </span>
@@ -38,7 +38,7 @@
                 li
                 <b class="border border-danger p-3"> hello b </b>
               </li>
-            </ul>
+            </ol>
           </div>
         </div>
       </div>
@@ -52,16 +52,12 @@
     <script>
       //啟用jquery
       $("document").ready(function () {
+        function colorChange(nowthis) {
+          // console.log(nowthis);
+          $(nowthis).parent().addClass("text-danger");
+        }
         $("span").on("click", (e) => {
-          // console.log(e.target);
-          let parent = $(e.target).parent();
-          parent.addClass("text-danger");
-          console.log(parent);
-          // 多種加class的方法
-          // parent.attr('class','old + new')此方法會清空原本的
-          //parent.removeClass('xxx-xxx,xxx-xxx')清除某幾個class
-          let upparent = parent.parent();
-          upparent.addClass("bg-secondary");
+          colorChange(e.target);
         });
       });
     </script>
