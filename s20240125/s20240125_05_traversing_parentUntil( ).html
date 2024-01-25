@@ -55,7 +55,7 @@
         function colorChange(nowthis) {
           // console.log(nowthis);
           $(nowthis)
-            .parentsUntil(".a1")
+            .parentsUntil("div")
             .attr("class", "border border-info p-3");
         }
         $("span").on("click", (e) => {
