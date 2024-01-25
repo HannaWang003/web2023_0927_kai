@@ -52,11 +52,7 @@
     <script>
       $(".box").on("click", (e) => {
         console.log(e.target);
-        let thisChild = $(e.target)
-          .children()
-          .children()
-          .children()
-          .addClass("bg-warning");
+        let thisChild = $(e.target).find("b").addClass("bg-warning");
         console.log(thisChild);
       });
     </script>
