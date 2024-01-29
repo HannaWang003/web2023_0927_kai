@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      background-image: url("./img/back.png");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: right bottom;
+    }
+    table {
+      width: 100%;
+    }
+    table,
+    tr,
+    th,
+    td {
+      border-bottom: 1px solid #333;
+      text-align: center;
+    }
+    td {
+      backdrop-filter: blur(10px);
+    }
+    th,
+    td {
+      padding: 10px;
+    }
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <button class="mt-2 mb-1 btn btn-outline-secondary">Coffe</button>
+      <button class="mt-2 mb-1 btn btn-outline-secondary">Bread</button>
+      <div class="row mt-1 border bg-dark rounded-5 p-3">
+        <div class="col-3 text-center p-1">
+          <button
+            id="Latte"
+            class="orbtn btn btn-outline-light w-75"
+            data-img="Latte.jpg"
+            data-name="Latte"
+            data-price="180"
+          >
+            Latte
+          </button>
+        </div>
+        <div class="col-3 text-center p-1">
+          <button
+            id="Cappuccino"
+            class="orbtn btn btn-outline-light w-75"
+            data-img="Cappuccino.jpg"
+            data-name="Cappuccino"
+            data-price="200"
+          >
+            Cappuccino
+          </button>
+        </div>
+        <div class="col-3 text-center p-1">
+          <button
+            id="Mocha"
+            class="orbtn btn btn-outline-light w-75"
+            data-img="mocha.jpg"
+            data-name="Mocha"
+            data-price="160"
+          >
+            Mocha
+          </button>
+        </div>
+        <div class="col-3 text-center p-1">
+          <button
+            id="Espresso"
+            class="orbtn btn btn-outline-light w-75"
+            data-img="essp.jpg"
+            data-name="Espresso"
+            data-price="240"
+          >
+            Espresso
+          </button>
+        </div>
+      </div>
+      <!-- bread -->
+      <div class="row mt-1 border bg-dark rounded-5 p-3">
+        <div class="col-3 text-center p-1">
+          <button
+            id="Croissant"
+            class="orbtn btn btn-outline-light w-75"
+            data-img="Croissant.jpg"
+            data-name="Croissant"
+            data-price="50"
+          >
+            Croissant
+          </button>
+        </div>
+        <div class="col-3 text-center p-1">
+          <button
+            id="Baguette"
+            class="orbtn btn btn-outline-light w-75"
+            data-img="Baguette.jpg"
+            data-name="Baguette"
+            data-price="120"
+          >
+            Baguette
+          </button>
+        </div>
+        <div class="col-3 text-center p-1">
+          <button
+            id="Scone"
+            class="orbtn btn btn-outline-light w-75"
+            data-img="Scone.jpg"
+            data-name="Scone"
+            data-price="30"
+          >
+            Scone
+          </button>
+        </div>
+        <div class="col-3 text-center p-1">
+          <button
+            id="Cinnamon-Roll"
+            class="orbtn btn btn-outline-light w-75"
+            data-img="Cinnamon-Roll.jpg"
+            data-name="Cinnamon-Roll"
+            data-price="30"
+          >
+            Cinnamon-Roll
+          </button>
+        </div>
+      </div>
+      <!-- /bread -->
+      <div class="row mt-3">
+        <div class="col">
+          <table>
+            <tr id="orderHeader">
+              <th>item</th>
+              <th>price</th>
+              <th>Q'ty</th>
+              <th>Subtotal</th>
+              <th>Note</th>
+              <th>del</th>
+            </tr>
+            <tr class="bg-dark text-light">
+              <td colspan="2">Total</td>
+              <td
+                colspan="2"
+                id="orderTotal"
+                class="fs-5 text-warning fw-bolder"
+              ></td>
+              <td>
+                <input
+                  class="btn btn-light w-100"
+                  type="button"
+                  value="ORDER"
+                />
+              </td>
+              <td>discount</td>
+              <!-- <td></td> -->
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      //啟用jquery
+      $("document").ready(function () {
+        //點餐
+        function order() {
+          // $(".orbtn").removeClass("btn-secondary");
+          $(this).removeClass("btn-outline-secondary");
+          $(this).addClass("btn-secondary");
+          let img = $(this).data("img");
+          let name = $(this).data("name");
+          let price = $(this).data("price");
+          let html = `
+            <tr>
+              <td class="name"><img src='./img/${img}'>
+                <br>${name}</td>
+              <td><input class='price' name='price' value=${price}></td>
+              <td><input type="number" class='qty' name='qty' placeholder='0'></td>
+              <td class='subtotal'></td>
+              <td><input type="text" name="note"></td>
+              <td>
+                <button class='cloneBtn btn btn-dark mx-1'><i class="fa-solid fa-clone fa-2xl" data-name='${name}'></i></i>
+                <button class='delBtn btn btn-dark'><i class="fa-solid fa-square-minus fa-2xl" data-name='${name}'></i></button>
+                </td>
+            </tr>
+            `;
+          $("#orderHeader").after(html);
+          // 用來取消click事件
+          // $(this).off("click", order);
+        }
+        function cloneBtn() {
+          let cloneParent = $(this).closest("tr");
+          console.log(cloneParent);
+        }
+        //clone
+        $("#orderHeader").parent().on("click", ".cloneBtn", cloneBtn);
+        $(".orbtn").on("click", order);
+        //刪除
+        $("#orderHeader")
+          .parent()
+          .on("click", ".delBtn", (e) => {
+            // console.log(e.target);
+            let thisBtn = $(e.target).data("name");
+            // console.log(e.target);
+            //用來回復click事件
+            // $("#" + thisBtn).on("click", order);
+            $("#" + thisBtn).removeClass("btn-secondary");
+            $("#" + thisBtn).addClass("btn-outline-secondary");
+            e.target.closest("tr").remove();
+          });
+        let orderParent = $("#orderHeader").parent();
+        orderParent.on("change", ".qty", function (e) {
+          let price = $(this).closest("tr").find(".price").val();
+          let subtotal = Number($(this).val()) * Number(price);
+          $(this).closest("tr").find(".subtotal").text(subtotal);
+          let allSubtotal = $(".subtotal");
+          console.log(allSubtotal);
+          let tmp = 0;
+          allSubtotal.each(function (idx, val) {
+            tmp += Number($(val).text());
+          });
+
+          $("#orderTotal").text(tmp);
+        });
+      });
+    </script>
+  </body>
+</html>
