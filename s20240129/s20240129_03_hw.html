@@ -53,12 +53,33 @@
       width: 100px;
       height: 100px;
     }
+    img {
+      box-shadow: 0 0 5px #947055;
+    }
   </style>
   <body>
     <div class="container">
-      <button class="mt-2 mb-1 btn btn-outline-secondary">Coffe</button>
-      <button class="mt-2 mb-1 btn btn-outline-secondary">Bread</button>
-      <div class="row mt-1 border bg-dark rounded-5 p-3">
+      <button
+        data-item="coffe"
+        class="itemBtn mt-2 mb-1 btn"
+        style="background: #947055; color: #f4d4b3"
+      >
+        <i class="fa-solid fa-mug-saucer fa-lg"></i>
+        Coffe
+      </button>
+      <button
+        data-item="bread"
+        class="itemBtn mt-2 mb-1 btn"
+        style="background: #e6d0ba; color: #947055"
+      >
+        <i class="fa-solid fa-bread-slice fa-lg"></i>
+        Bread
+      </button>
+      <div
+        class="row mt-1 border rounded-5 p-3"
+        id="coffe"
+        style="display: none; background: #947055"
+      >
         <div class="col-3 text-center p-1">
           <button
             id="Latte"
@@ -105,7 +126,11 @@
         </div>
       </div>
       <!-- bread -->
-      <div class="row mt-1 border bg-dark rounded-5 p-3">
+      <div
+        class="row mt-1 border rounded-5 p-3"
+        id="bread"
+        style="display: none; background: #e6d0ba"
+      >
         <div class="col-3 text-center p-1">
           <button
             id="Croissant"
@@ -155,6 +180,16 @@
       <div class="row mt-3">
         <div class="col">
           <table>
+            <tr>
+              <td colspan="6" class="fs-1 fw-bolder bg-light">
+                <i class="fa-solid fa-mug-saucer fa-2xl"></i> CB coffe
+              </td>
+              <!-- <td></td> -->
+              <!-- <td></td> -->
+              <!-- <td></td> -->
+              <!-- <td></td> -->
+              <!-- <td></td> -->
+            </tr>
             <tr id="orderHeader">
               <th>item</th>
               <th>price</th>
@@ -164,7 +199,7 @@
               <th>del</th>
             </tr>
             <tr class="bg-dark text-light">
-              <td colspan="2">Total</td>
+              <td>Total</td>
               <td
                 colspan="2"
                 id="orderTotal"
@@ -172,15 +207,22 @@
               ></td>
               <td>
                 <input
+                  id="calulate"
                   class="btn btn-light w-100"
                   type="button"
-                  value="ORDER"
+                  value="CALULATE TOTAL"
                 />
               </td>
               <td>discount</td>
+              <td id="dis" class="text-danger fw-bolder"></td>
               <!-- <td></td> -->
             </tr>
           </table>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col text-end">
+          <button id="ordernow" class="btn btn-secondary">ORDER NOW</button>
         </div>
       </div>
     </div>
@@ -196,9 +238,9 @@
       $("document").ready(function () {
         //點餐
         function order() {
-          // $(".orbtn").removeClass("btn-secondary");
-          $(this).removeClass("btn-outline-secondary");
-          $(this).addClass("btn-secondary");
+          // $(".orbtn").removeClass("btn-light");
+          $(this).removeClass("btn-outline-light");
+          $(this).addClass("btn-light");
           let img = $(this).data("img");
           let name = $(this).data("name");
           let price = $(this).data("price");
@@ -223,7 +265,33 @@
         function cloneBtn() {
           let cloneParent = $(this).closest("tr");
           console.log(cloneParent);
+          cloneParent.clone(true).insertAfter(cloneParent);
         }
+        //列出選單
+        function itemToggle() {
+          let item = $(this).data("item");
+          $("#" + item).toggle();
+        }
+        //計算全部金額
+        function totalAmount() {
+          let allSubtotal = $(".subtotal");
+          console.log(allSubtotal);
+          let tmp = 0;
+          allSubtotal.each(function (idx, val) {
+            tmp += Number($(val).text());
+          });
+          if (tmp >= 500) {
+            let dis = tmp - Math.ceil(tmp * 0.95);
+            tmp = Math.ceil(tmp * 0.95);
+            $("#orderTotal").text(tmp);
+            $("#dis").text(dis);
+            // console.log(tmp);
+          } else {
+            $("#orderTotal").text(tmp);
+            $("#dis").text("0");
+          }
+        }
+        $(".itemBtn").on("click", itemToggle);
         //clone
         $("#orderHeader").parent().on("click", ".cloneBtn", cloneBtn);
         $(".orbtn").on("click", order);
@@ -236,23 +304,21 @@
             // console.log(e.target);
             //用來回復click事件
             // $("#" + thisBtn).on("click", order);
-            $("#" + thisBtn).removeClass("btn-secondary");
-            $("#" + thisBtn).addClass("btn-outline-secondary");
+            $("#" + thisBtn).removeClass("btn-light");
+            $("#" + thisBtn).addClass("btn-outline-light");
             e.target.closest("tr").remove();
+            totalAmount();
           });
         let orderParent = $("#orderHeader").parent();
         orderParent.on("change", ".qty", function (e) {
           let price = $(this).closest("tr").find(".price").val();
           let subtotal = Number($(this).val()) * Number(price);
           $(this).closest("tr").find(".subtotal").text(subtotal);
-          let allSubtotal = $(".subtotal");
-          console.log(allSubtotal);
-          let tmp = 0;
-          allSubtotal.each(function (idx, val) {
-            tmp += Number($(val).text());
-          });
-
-          $("#orderTotal").text(tmp);
+          totalAmount();
+        });
+        $("#calulate").on("click", totalAmount);
+        $("#ordernow").on("click", function () {
+          confirm("YOUR ORDER : NTD " + $("#orderTotal").text());
         });
       });
     </script>
