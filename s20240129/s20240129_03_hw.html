@@ -115,6 +115,9 @@
       cursor: pointer;
       z-index: 101;
     }
+    button{
+      font-size:calc(0.75em+1vw);
+    }
   </style>
   <body>
     <div id="promation">
@@ -142,7 +145,7 @@
         Bread
       </button>
       <div
-        class="row mt-1 border rounded-5 p-3"
+        class="endBtn row mt-1 border rounded-5 p-3"
         id="coffe"
         style="margin:auto;width:100%;display: none; background: #947055"
       >
@@ -197,7 +200,7 @@
       </div>
       <!-- bread -->
       <div
-        class="row mt-1 border rounded-5 p-3"
+        class="endBtn row mt-1 border rounded-5 p-3"
         id="bread"
         style="margin:auto;width:100%;display: none; background: #e6d0ba"
       >
@@ -412,6 +415,7 @@
           let coffeqty = countQty("coffeitem");
           let breadqty = countQty("breaditem");
           Swal.fire({
+            confirmButtonColor: "#947055",
             title: "shopping cart",
             text:
               coffeqty + " cups of coffe || " + breadqty + " pieces of bread",
@@ -425,13 +429,14 @@
           });
         });
         $("#ordernow").on("click", function () {
+          if(parseInt($("#orderTotal").text())>0){
           Swal.fire({
             title: "check your order",
             text: "NTD" + $("#orderTotal").text(),
             icon: "info",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
+            confirmButtonColor: "#947055",
+            cancelButtonColor: "gray",
             confirmButtonText: "Yes, Confirmed!",
           }).then((result) => {
             if (result.isConfirmed) {
@@ -447,17 +452,27 @@
               Swal.fire({
                 title: "YOUR ORDER NO:" + orderNum,
                 text: " NTD:" + $("#orderTotal").text(),
+                confirmButtonColor: "#947055",
                 icon: "success",
               });
               $(".shopitem").remove();
               countQty("coffeitem");
               countQty("breaditem");
+              $(".endBtn").hide();
               $("#orderTotal").text(0);
               $("#dis").text(0);
               $(".orbtn").removeClass("btn-light", "btn-outline-light");
               $(".orbtn").addClass("btn-outline-light");
             }
-          });
+          })
+        }else{
+          Swal.fire({
+            icon:"warning",
+            title:"Oh!",
+            text:"looks like the cart is empty",
+            confirmButtonColor:"gray"
+          })
+        }
         });
         $(".close").on("click", function () {
           $("#promation").remove();
