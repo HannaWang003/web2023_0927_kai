@@ -39,7 +39,7 @@
     body {
       font-family: "Kanit", sans-serif;
       font-weight: 400;
-      background-color: #e8e0dd;
+      background-color: #FDF7F7;
       background-image: url("./img/back.png"), url("./img/bg.png");
       background-size: 300px, contain;
       background-repeat: no-repeat;
@@ -258,33 +258,30 @@
           <table>
             <tr id="orderHeader">
               <th>item</th>
-              <th>price</th>
+              <!-- <th>price</th>
               <th>Q'ty</th>
-              <th>Subtotal</th>
-              <th>Note</th>
-              <th class="text-light">operate</th>
+              <th>Subtotal</th> -->
+              <th>Qty/Price</th>
+              <th class="text-light">Note/Operate</th>
             </tr>
             <tr class="bg-dark text-light">
-              <td>Total</td>
-              <td
-                colspan="2"
-                id="orderTotal"
-                class="fs-5 text-warning fw-bolder"
-              ></td>
-              <td>
-                <div id="calulate" class="btn btn-light w-100" />
-                <div>
-                  <i class="fa-solid fa-cart-arrow-down fa-2xl"></i
-                  >&nbsp;&nbsp;SHOPPING CART
-                </div>
-              </td>
+              <td>TOTAL</td>
               <td>
                 <p>discount</p>
                 <p class="text-danger fw-bolder">
                   5% off for purchases over 500
                 </p>
               </td>
-              <td id="dis" class="text-danger fw-bolder"></td>
+              <td rowspan="2" style="width: 30%">
+                <div id="calulate" class="btn btn-light w-50" />
+                  <i class="fa-solid fa-cart-arrow-down fa-2xl"></i
+                  ><br />SHOPPING CART
+                </div>
+              </td>
+            </tr>
+            <tr class="bg-dark text-light">
+              <td id="orderTotal" class="fs-5 text-warning fw-bolder">0</td>
+              <td id="dis" class="text-danger fw-bolder">0</td>
               <!-- <td></td> -->
             </tr>
           </table>
@@ -321,12 +318,17 @@
           let html = `
               <tr class="shopitem">
                 <td class="name"><img src='./img/${img}'>
-                  <br>${name}</td>
-                <td><input class='price' name='price' value=${price} readonly></td>
-                <td><input type="number" class='qty ${itemqty}' name='qty' placeholder='0'></td>
-                <td class='subtotal'></td>
-                <td><input type="text" name="note"></td>
+                  <br>${name}
+                </td>
                 <td>
+                  <input class='price m-1' name='price' value=${price} readonly>
+                  <input type="number" class='qty ${itemqty} m-1' name='qty' placeholder='0'>
+                  <div class='text-end'>
+                    <span>subtotal: </span><span class='subtotal'></span>
+                  </div>
+                </td>
+                <td>
+                  <input type="text" name="note" class="mb-2">
                   <button class='cloneBtn btn btn-dark mx-1'><i class="fa-solid fa-clone fa-2xl" data-name='${name}'></i></i>
                   <button class='delBtn btn btn-dark'><i class="fa-solid fa-square-minus fa-2xl" data-name='${name}'></i></button>
                   </td>
