@@ -395,7 +395,23 @@
           $(this).closest("tr").find(".subtotal").text(subtotal);
           totalAmount();
         });
-        $("#calulate").on("click", totalAmount);
+        $("#calulate").on("click", function () {
+          Swal.fire({
+            title: "shopping cart",
+            text:
+              "Discount applied: NTD" +
+              $("#dis").text() +
+              "|| Current Total: NTD" +
+              $("#orderTotal").text(),
+            showClass: {
+              popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `,
+            },
+          });
+        });
         $("#ordernow").on("click", function () {
           Swal.fire({
             title: "check your order",
