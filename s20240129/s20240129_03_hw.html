@@ -39,9 +39,9 @@
     body {
       font-family: "Kanit", sans-serif;
       font-weight: 400;
-      background-color: #f5f5f5;
-      background-image: url("./img/bg2.png"), url("./img/bg.png");
-      background-size: contain, contain;
+      background-color: #e8e0dd;
+      background-image: url("./img/back.png"), url("./img/bg.png");
+      background-size: 300px, contain;
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-position: left bottom, right top;
@@ -152,6 +152,7 @@
             data-img="Latte.jpg"
             data-name="Latte"
             data-price="180"
+            data-item="coffeitem"
           >
             Latte
           </button>
@@ -163,6 +164,7 @@
             data-img="Cappuccino.jpg"
             data-name="Cappuccino"
             data-price="200"
+            data-item="coffeitem"
           >
             Cappuccino
           </button>
@@ -174,6 +176,7 @@
             data-img="mocha.jpg"
             data-name="Mocha"
             data-price="160"
+            data-item="coffeitem"
           >
             Mocha
           </button>
@@ -185,6 +188,7 @@
             data-img="essp.jpg"
             data-name="Espresso"
             data-price="240"
+            data-item="coffeitem"
           >
             Espresso
           </button>
@@ -203,6 +207,7 @@
             data-img="Croissant.jpg"
             data-name="Croissant"
             data-price="50"
+            data-item="breaditem"
           >
             Croissant
           </button>
@@ -214,6 +219,7 @@
             data-img="Baguette.jpg"
             data-name="Baguette"
             data-price="120"
+            data-item="breaditem"
           >
             Baguette
           </button>
@@ -225,6 +231,7 @@
             data-img="Scone.jpg"
             data-name="Scone"
             data-price="30"
+            data-item="breaditem"
           >
             Scone
           </button>
@@ -236,6 +243,7 @@
             data-img="Cinnamon-Roll.jpg"
             data-name="Cinnamon-Roll"
             data-price="30"
+            data-item="breaditem"
           >
             Cinnamon-Roll
           </button>
@@ -264,12 +272,11 @@
                 class="fs-5 text-warning fw-bolder"
               ></td>
               <td>
-                <input
-                  id="calulate"
-                  class="btn btn-light w-100"
-                  type="button"
-                  value="CALULATE TOTAL"
-                />
+                <div id="calulate" class="btn btn-light w-100" />
+                <div>
+                  <i class="fa-solid fa-cart-arrow-down fa-2xl"></i
+                  >&nbsp;&nbsp;SHOPPING CART
+                </div>
               </td>
               <td>
                 <p>discount</p>
@@ -307,26 +314,34 @@
           // $(".orbtn").removeClass("btn-light");
           $(this).removeClass("btn-outline-light");
           $(this).addClass("btn-light");
+          let itemqty = $(this).data("item");
           let img = $(this).data("img");
           let name = $(this).data("name");
           let price = $(this).data("price");
           let html = `
-            <tr>
-              <td class="name"><img src='./img/${img}'>
-                <br>${name}</td>
-              <td><input class='price' name='price' value=${price} readonly></td>
-              <td><input type="number" class='qty' name='qty' placeholder='0'></td>
-              <td class='subtotal'></td>
-              <td><input type="text" name="note"></td>
-              <td>
-                <button class='cloneBtn btn btn-dark mx-1'><i class="fa-solid fa-clone fa-2xl" data-name='${name}'></i></i>
-                <button class='delBtn btn btn-dark'><i class="fa-solid fa-square-minus fa-2xl" data-name='${name}'></i></button>
-                </td>
-            </tr>
-            `;
+              <tr class="shopitem">
+                <td class="name"><img src='./img/${img}'>
+                  <br>${name}</td>
+                <td><input class='price' name='price' value=${price} readonly></td>
+                <td><input type="number" class='qty ${itemqty}' name='qty' placeholder='0'></td>
+                <td class='subtotal'></td>
+                <td><input type="text" name="note"></td>
+                <td>
+                  <button class='cloneBtn btn btn-dark mx-1'><i class="fa-solid fa-clone fa-2xl" data-name='${name}'></i></i>
+                  <button class='delBtn btn btn-dark'><i class="fa-solid fa-square-minus fa-2xl" data-name='${name}'></i></button>
+                  </td>
+              </tr>
+              `;
           $("#orderHeader").after(html);
           // 用來取消click事件
           // $(this).off("click", order);
+        }
+        function countQty(itemqty) {
+          let qty = 0;
+          $("." + itemqty).each(function () {
+            qty += parseInt($(this).val());
+          });
+          return qty;
         }
         function cloneBtn() {
           let cloneParent = $(this).closest("tr");
@@ -389,19 +404,18 @@
           totalAmount();
         });
         $("#calulate").on("click", function () {
+          let coffeqty = countQty("coffeitem");
+          let breadqty = countQty("breaditem");
           Swal.fire({
             title: "shopping cart",
             text:
-              "Discount applied: NTD" +
-              $("#dis").text() +
-              "|| Current Total: NTD" +
-              $("#orderTotal").text(),
+              coffeqty + " cups of coffe || " + breadqty + " pieces of bread",
             showClass: {
               popup: `
-      animate__animated
-      animate__fadeInUp
-      animate__faster
-    `,
+        animate__animated
+        animate__fadeInUp
+        animate__faster
+      `,
             },
           });
         });
@@ -430,6 +444,13 @@
                 text: " NTD:" + $("#orderTotal").text(),
                 icon: "success",
               });
+              $(".shopitem").remove();
+              countQty("coffeitem");
+              countQty("breaditem");
+              $("#orderTotal").text(0);
+              $("#dis").text(0);
+              $(".orbtn").removeClass("btn-light", "btn-outline-light");
+              $(".orbtn").addClass("btn-outline-light");
             }
           });
         });
