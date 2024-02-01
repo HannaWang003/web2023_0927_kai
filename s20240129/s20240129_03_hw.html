@@ -48,6 +48,7 @@
     }
     table {
       width: 100%;
+      margin:auto;
     }
     table,
     tr,
@@ -143,7 +144,7 @@
       <div
         class="row mt-1 border rounded-5 p-3"
         id="coffe"
-        style="display: none; background: #947055"
+        style="margin:auto;width:100%;display: none; background: #947055"
       >
         <div class="col-3 text-center p-1">
           <button
@@ -198,7 +199,7 @@
       <div
         class="row mt-1 border rounded-5 p-3"
         id="bread"
-        style="display: none; background: #e6d0ba"
+        style="margin:auto;width:100%;display: none; background: #e6d0ba"
       >
         <div class="col-3 text-center p-1">
           <button
@@ -267,15 +268,15 @@
             <tr class="bg-dark text-light">
               <td>TOTAL</td>
               <td>
-                <p>discount</p>
-                <p class="text-danger fw-bolder">
-                  5% off for purchases over 500
+                <p class="">discount</p>
+                <p class="fw-bolder">
+                  <b class="text-danger">5%</b> off for purchases over 500</b>
                 </p>
               </td>
               <td rowspan="2" style="width: 30%">
-                <div id="calulate" class="btn btn-light w-50" />
+                <div id="calulate" class="btn btn-light w-75 text-center" />
                   <i class="fa-solid fa-cart-arrow-down fa-2xl"></i
-                  ><br />SHOPPING CART
+                  ><br />SHOPPING<br>CART
                 </div>
               </td>
             </tr>
@@ -316,7 +317,7 @@
           let name = $(this).data("name");
           let price = $(this).data("price");
           let html = `
-              <tr class="shopitem">
+              <tr class="shopitem ${name}">
                 <td class="name"><img src='./img/${img}'>
                   <br>${name}
                 </td>
@@ -328,7 +329,7 @@
                   </div>
                 </td>
                 <td>
-                  <input type="text" name="note" class="mb-2">
+                  <input type="text" name="note" class="mb-2"><br>
                   <button class='cloneBtn btn btn-dark mx-1'><i class="fa-solid fa-clone fa-2xl" data-name='${name}'></i></i>
                   <button class='delBtn btn btn-dark'><i class="fa-solid fa-square-minus fa-2xl" data-name='${name}'></i></button>
                   </td>
@@ -393,9 +394,11 @@
             // console.log(e.target);
             //用來回復click事件
             // $("#" + thisBtn).on("click", order);
+            e.target.closest("tr").remove();
+            if($("."+thisBtn).length<=0){
             $("#" + thisBtn).removeClass("btn-light");
             $("#" + thisBtn).addClass("btn-outline-light");
-            e.target.closest("tr").remove();
+          }
             totalAmount();
           });
         let orderParent = $("#orderHeader").parent();
