@@ -18,29 +18,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <style>
-    table {
-      margin: auto;
-      width: 100%;
+    * {
+      font-size: calc(0.75em+1.5vw);
     }
-    th,
-    td {
-      text-align: center;
-      background: orange;
-    }
-    td:nth-child(3) {
-      text-align: end;
+    .row {
+      border-bottom: 1px solid #ccc;
     }
   </style>
   <body>
     <div class="container">
-      <table class="table">
-        <tr id="thsr">
-          <th>TrainNo</th>
-          <th>StartStation</th>
-          <th>Stopstation</th>
-          <th>EndStation</th>
-        </tr>
-      </table>
+      <h3 class="text-center mt-3">臺北市 今日施工資訊</h3>
+      <div class="row mb-3 mt-5" id="ApiTitle">
+        <div class="col text-center">行政區<br />(C_Name)</div>
+        <div class="col-3 text-center">施工位置<br />(Addr)</div>
+        <div class="col-2 text-center">挖掘目的<br />(NPurp)</div>
+        <div class="col-2 text-center">施工時段<br />(Co_Ti)</div>
+        <div class="col text-center">影響通行<br />(IsBlock)</div>
+        <div class="col text-center">核准施工期<br />(Cb_Da)</div>
+        <div class="col-1 text-center">核准完工期<br />(Ce_Da)</div>
+      </div>
     </div>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
@@ -51,25 +47,26 @@
     <script>
       $.ajax({
         type: "get",
-        url: "https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/AvailableSeatStatus/Train/Leg/Today",
-        //   data: "data",
+        url: "./data/Todaywork.json",
+        data: "data",
         dataType: "json",
         success: function (res) {
+          console.log("res", res.features);
           let html = "";
-          res.AvailableSeats.forEach((data) => {
-            let nextStation = "";
-            data.StopStations.forEach((station) => {
-              nextStation += `${station.StationName.Zh_tw}=>`;
-            });
-            html += `<tr>
-              <td>${data.TrainNo}</td>
-              <td>${data.StartingStationName.En}</td>
-              <td>${nextStation}</td>
-              <td>${data.EndingStationName.En}</td>
-            </tr>`;
+          $.each(res.features, function (idx, data) {
+            console.log("data", data.properties);
+            html += `<div class="row mt-1">
+              <div class="col text-center">${data.properties.C_Name}</div>
+              <div class="col-3">${data.properties.Addr}</div>
+                <div class="col-2">${data.properties.NPurp}</div>
+                <div class="col-2">${data.properties.Co_Ti}</div>
+                <div class="col text-center">${data.properties.IsBlock}</div>
+                <div class="col">${data.properties.Cb_Da}</div>
+                <div class="col">${data.properties.Ce_Da}</div>
+              </div>
+              `;
           });
-          $("#thsr").after(html);
-          console.log("res", res);
+          $("#ApiTitle").after(html);
         },
       });
     </script>
