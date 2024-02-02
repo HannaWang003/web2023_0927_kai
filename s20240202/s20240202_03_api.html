@@ -11,11 +11,11 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"
+    />
   </head>
   <style>
     * {
@@ -28,22 +28,24 @@
   <body>
     <div class="container">
       <h3 class="text-center mt-3">臺北市 今日施工資訊</h3>
-      <div class="row mb-3 mt-5" id="ApiTitle">
-        <div class="col text-center">行政區<br />(C_Name)</div>
-        <div class="col-3 text-center">施工位置<br />(Addr)</div>
-        <div class="col-2 text-center">挖掘目的<br />(NPurp)</div>
-        <div class="col-2 text-center">施工時段<br />(Co_Ti)</div>
-        <div class="col text-center">影響通行<br />(IsBlock)</div>
-        <div class="col text-center">核准施工期<br />(Cb_Da)</div>
-        <div class="col-1 text-center">核准完工期<br />(Ce_Da)</div>
-      </div>
+      <table id="myTable">
+        <thead>
+          <tr>
+            <th class="text-center">行政區<br />(C_Name)</th>
+            <th class="text-center">施工位置<br />(Addr)</th>
+            <th class="text-center">挖掘目的<br />(NPurp)</th>
+            <th class="text-center">施工時段<br />(Co_Ti)</th>
+            <th class="text-center">影響通行<br />(IsBlock)</th>
+            <th class="text-center">核准施工期<br />(Cb_Da)</th>
+            <th class="text-center">核准完工期<br />(Ce_Da)</th>
+          </tr>
+        </thead>
+        <tbody id="ApiTitle"></tbody>
+      </table>
     </div>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script>
       $.ajax({
         type: "get",
@@ -53,20 +55,25 @@
         success: function (res) {
           console.log("res", res.features);
           let html = "";
+          // let tmp = [];
           $.each(res.features, function (idx, data) {
             console.log("data", data.properties);
-            html += `<div class="row mt-1">
-              <div class="col text-center">${data.properties.C_Name}</div>
-              <div class="col-3">${data.properties.Addr}</div>
-                <div class="col-2">${data.properties.NPurp}</div>
-                <div class="col-2">${data.properties.Co_Ti}</div>
-                <div class="col text-center">${data.properties.IsBlock}</div>
-                <div class="col">${data.properties.Cb_Da}</div>
-                <div class="col">${data.properties.Ce_Da}</div>
-              </div>
+            html += `<tr>
+              <td>${data.properties.C_Name}</td>
+              <td>${data.properties.Addr}</td>
+                <td>${data.properties.NPurp}</td>
+                <td>${data.properties.Co_Ti}</td>
+                <td>${data.properties.IsBlock}</td>
+                <td>${data.properties.Cb_Da}</td>
+                <td>${data.properties.Ce_Da}</td>
+              </tr>
               `;
+            // tmp.push(data.properties.C_Name);
           });
-          $("#ApiTitle").after(html);
+          // let opt = tmp.indexOf();
+
+          $("#ApiTitle").append(html);
+          $("#myTable").DataTable();
         },
       });
     </script>
