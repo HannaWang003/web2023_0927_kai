@@ -23,12 +23,24 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Kanit&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <style>
     body {
-      background-color: #f5f5f5;
-      background-image: url("./img/bg2.png"), url("./img/bg.png");
+      font-family: "Kanit", sans-serif;
+      font-weight: 400;
+      background-color: #EFEBEA;
+      background-image: url("./img/bg3.png"), url("./img/bg.png");
       background-size: contain, contain;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -36,6 +48,7 @@
     }
     table {
       width: 100%;
+      margin:auto;
     }
     table,
     tr,
@@ -45,7 +58,7 @@
       text-align: center;
     }
     td {
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(50px);
     }
     th {
       background: #e6d0ba;
@@ -61,8 +74,59 @@
     img {
       box-shadow: 0 0 5px #947055;
     }
+    #promation {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99;
+    }
+    #promation::before {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #b3a18f83;
+      backdrop-filter: blur(30px);
+      z-index: 98;
+    }
+    .mask {
+      background: #000000;
+      position: fixed;
+      height: 30vh;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      border: 1px solid rgb(0, 0, 0);
+      z-index: 100;
+      font-size: 3vw;
+      text-align: center;
+      box-shadow: 5px 5px 2px #635244;
+      b {
+        color: #e2721b;
+        font-family: "Kanit", sans-serif;
+        font-weight: 900;
+        font-style: normal;
+      }
+    }
+    .close {
+      position: fixed;
+      top: 5%;
+      right: 5%;
+      cursor: pointer;
+      z-index: 101;
+    }
+    button{
+      font-size:calc(0.75em+1vw);
+    }
   </style>
   <body>
+    <div id="promation">
+      <div class="close text-end"><i class="fa-solid fa-x fa-2xl"></i></div>
+      <div class="mask p-5">
+        <p class="text-light">tOdAy's Special Offer !!</p>
+        <b id="spDis">5% off over NT 500</b>
+      </div>
+    </div>
     <div class="container">
       <button
         data-item="coffe"
@@ -81,17 +145,18 @@
         Bread
       </button>
       <div
-        class="row mt-1 border rounded-5 p-3"
+        class="endBtn row mt-1 border rounded-5 p-3"
         id="coffe"
-        style="display: none; background: #947055"
+        style="margin:auto;width:100%;display: none; background: #947055"
       >
         <div class="col-3 text-center p-1">
           <button
             id="Latte"
-            class="orbtn btn btn-outline-light w-75"
+            class="orbtn btn btn-outline-light w-75 text-dark"
             data-img="Latte.jpg"
             data-name="Latte"
             data-price="180"
+            data-item="coffeitem"
           >
             Latte
           </button>
@@ -99,10 +164,11 @@
         <div class="col-3 text-center p-1">
           <button
             id="Cappuccino"
-            class="orbtn btn btn-outline-light w-75"
+            class="orbtn btn btn-outline-light w-75 text-dark"
             data-img="Cappuccino.jpg"
             data-name="Cappuccino"
             data-price="200"
+            data-item="coffeitem"
           >
             Cappuccino
           </button>
@@ -110,10 +176,11 @@
         <div class="col-3 text-center p-1">
           <button
             id="Mocha"
-            class="orbtn btn btn-outline-light w-75"
+            class="orbtn btn btn-outline-light w-75 text-dark"
             data-img="mocha.jpg"
             data-name="Mocha"
             data-price="160"
+            data-item="coffeitem"
           >
             Mocha
           </button>
@@ -121,10 +188,11 @@
         <div class="col-3 text-center p-1">
           <button
             id="Espresso"
-            class="orbtn btn btn-outline-light w-75"
+            class="orbtn btn btn-outline-light w-75 text-dark"
             data-img="essp.jpg"
             data-name="Espresso"
             data-price="240"
+            data-item="coffeitem"
           >
             Espresso
           </button>
@@ -132,17 +200,18 @@
       </div>
       <!-- bread -->
       <div
-        class="row mt-1 border rounded-5 p-3"
+        class="endBtn row mt-1 border rounded-5 p-3"
         id="bread"
-        style="display: none; background: #e6d0ba"
+        style="margin:auto;width:100%;display: none; background: #e6d0ba"
       >
         <div class="col-3 text-center p-1">
           <button
             id="Croissant"
-            class="orbtn btn btn-outline-light w-75"
+            class="orbtn btn btn-outline-light w-75 text-dark"
             data-img="Croissant.jpg"
             data-name="Croissant"
             data-price="50"
+            data-item="breaditem"
           >
             Croissant
           </button>
@@ -150,10 +219,11 @@
         <div class="col-3 text-center p-1">
           <button
             id="Baguette"
-            class="orbtn btn btn-outline-light w-75"
+            class="orbtn btn btn-outline-light w-75 text-dark"
             data-img="Baguette.jpg"
             data-name="Baguette"
             data-price="120"
+            data-item="breaditem"
           >
             Baguette
           </button>
@@ -161,10 +231,11 @@
         <div class="col-3 text-center p-1">
           <button
             id="Scone"
-            class="orbtn btn btn-outline-light w-75"
+            class="orbtn btn btn-outline-light w-75 text-dark"
             data-img="Scone.jpg"
             data-name="Scone"
             data-price="30"
+            data-item="breaditem"
           >
             Scone
           </button>
@@ -172,10 +243,11 @@
         <div class="col-3 text-center p-1">
           <button
             id="Cinnamon-Roll"
-            class="orbtn btn btn-outline-light w-75"
+            class="orbtn btn btn-outline-light w-75 text-dark"
             data-img="Cinnamon-Roll.jpg"
             data-name="Cinnamon-Roll"
             data-price="30"
+            data-item="breaditem"
           >
             Cinnamon-Roll
           </button>
@@ -184,47 +256,36 @@
       <!-- /bread -->
       <div class="row mt-3">
         <div class="col">
+          <div class="fs-1 fw-bolder text-center">
+            <span style="writing-mode:vertical-lr"> =) </span> CB coffe
+          </div>
           <table>
-            <tr>
-              <td colspan="6" class="fs-1 fw-bolder">
-                <i class="fa-solid fa-mug-saucer fa-2xl"></i> CB coffe
-              </td>
-              <!-- <td></td> -->
-              <!-- <td></td> -->
-              <!-- <td></td> -->
-              <!-- <td></td> -->
-              <!-- <td></td> -->
-            </tr>
             <tr id="orderHeader">
               <th>item</th>
-              <th>price</th>
+              <!-- <th>price</th>
               <th>Q'ty</th>
-              <th>Subtotal</th>
-              <th>Note</th>
-              <th class="text-light">operate</th>
+              <th>Subtotal</th> -->
+              <th>Price/Qty</th>
+              <th class="text-light">Note/Operate</th>
             </tr>
             <tr class="bg-dark text-light">
-              <td>Total</td>
-              <td
-                colspan="2"
-                id="orderTotal"
-                class="fs-5 text-warning fw-bolder"
-              ></td>
+              <td>TOTAL</td>
               <td>
-                <input
-                  id="calulate"
-                  class="btn btn-light w-100"
-                  type="button"
-                  value="CALULATE TOTAL"
-                />
-              </td>
-              <td>
-                <p>discount</p>
-                <p class="text-danger fw-bolder">
-                  5% off for purchases over 500
+                <p class="">discount</p>
+                <p class="fw-bolder">
+                  <b class="text-danger">5%</b> off for purchases over 500</b>
                 </p>
               </td>
-              <td id="dis" class="text-danger fw-bolder"></td>
+              <td rowspan="2" style="width: 30%">
+                <div id="calulate" class="btn btn-light w-75 text-center" />
+                  <i class="fa-solid fa-cart-arrow-down fa-2xl"></i
+                  ><br />SHOPPING<br>CART
+                </div>
+              </td>
+            </tr>
+            <tr class="bg-dark text-light">
+              <td id="orderTotal" class="fs-5 text-warning fw-bolder">0</td>
+              <td id="dis" class="text-danger fw-bolder">0</td>
               <!-- <td></td> -->
             </tr>
           </table>
@@ -243,34 +304,50 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       //啟用jquery
       $("document").ready(function () {
+        //促銷訊息
+        InOut("#spDis");
         //點餐
         function order() {
           // $(".orbtn").removeClass("btn-light");
           $(this).removeClass("btn-outline-light");
           $(this).addClass("btn-light");
+          let itemqty = $(this).data("item");
           let img = $(this).data("img");
           let name = $(this).data("name");
           let price = $(this).data("price");
           let html = `
-            <tr>
-              <td class="name"><img src='./img/${img}'>
-                <br>${name}</td>
-              <td><input class='price' name='price' value=${price} readonly></td>
-              <td><input type="number" class='qty' name='qty' placeholder='0'></td>
-              <td class='subtotal'></td>
-              <td><input type="text" name="note"></td>
-              <td>
-                <button class='cloneBtn btn btn-dark mx-1'><i class="fa-solid fa-clone fa-2xl" data-name='${name}'></i></i>
-                <button class='delBtn btn btn-dark'><i class="fa-solid fa-square-minus fa-2xl" data-name='${name}'></i></button>
+              <tr class="shopitem ${name}">
+                <td class="name"><img src='./img/${img}'>
+                  <br>${name}
                 </td>
-            </tr>
-            `;
+                <td>
+                  <input class='price m-1' name='price' value=${price} readonly>
+                  <input type="number" class='qty ${itemqty} m-1' name='qty' placeholder='0'>
+                  <div class='text-end'>
+                    <span>subtotal: </span><span class='subtotal'></span>
+                  </div>
+                </td>
+                <td>
+                  <input type="text" name="note" class="mb-2"><br>
+                  <button class='cloneBtn btn btn-dark mx-1'><i class="fa-solid fa-clone fa-2xl" data-name='${name}'></i></i>
+                  <button class='delBtn btn btn-dark'><i class="fa-solid fa-square-minus fa-2xl" data-name='${name}'></i></button>
+                  </td>
+              </tr>
+              `;
           $("#orderHeader").after(html);
           // 用來取消click事件
           // $(this).off("click", order);
+        }
+        function countQty(itemqty) {
+          let qty = 0;
+          $("." + itemqty).each(function () {
+            qty += parseInt($(this).val());
+          });
+          return qty;
         }
         function cloneBtn() {
           let cloneParent = $(this).closest("tr");
@@ -302,6 +379,11 @@
             $("#dis").text("0");
           }
         }
+        function InOut(elm) {
+          setInterval(function () {
+            $(elm).fadeOut(300).fadeIn(700);
+          }, 1000);
+        }
         $(".itemBtn").on("click", itemToggle);
         //clone
         $("#orderHeader").parent().on("click", ".cloneBtn", cloneBtn);
@@ -315,9 +397,11 @@
             // console.log(e.target);
             //用來回復click事件
             // $("#" + thisBtn).on("click", order);
+            e.target.closest("tr").remove();
+            if($("."+thisBtn).length<=0){
             $("#" + thisBtn).removeClass("btn-light");
             $("#" + thisBtn).addClass("btn-outline-light");
-            e.target.closest("tr").remove();
+          }
             totalAmount();
           });
         let orderParent = $("#orderHeader").parent();
@@ -327,9 +411,71 @@
           $(this).closest("tr").find(".subtotal").text(subtotal);
           totalAmount();
         });
-        $("#calulate").on("click", totalAmount);
+        $("#calulate").on("click", function () {
+          let coffeqty = countQty("coffeitem");
+          let breadqty = countQty("breaditem");
+          Swal.fire({
+            confirmButtonColor: "#947055",
+            title: "shopping cart",
+            text:
+              coffeqty + " cups of coffe || " + breadqty + " pieces of bread",
+            showClass: {
+              popup: `
+        animate__animated
+        animate__fadeInUp
+        animate__faster
+      `,
+            },
+          });
+        });
         $("#ordernow").on("click", function () {
-          confirm("YOUR ORDER : NTD " + $("#orderTotal").text());
+          if(parseInt($("#orderTotal").text())>0){
+          Swal.fire({
+            title: "check your order",
+            text: "NTD" + $("#orderTotal").text(),
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#947055",
+            cancelButtonColor: "gray",
+            confirmButtonText: "Yes, Confirmed!",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              let today = new Date();
+              let lastNum = (
+                "0000" + Math.ceil(Math.random() * 1000).toString()
+              ).slice(-5);
+              let orderDate =
+                today.getFullYear().toString() +
+                ("0" + (today.getMonth() + 1)).slice(-2) +
+                ("0" + today.getDate()).slice(-2);
+              orderNum = orderDate + lastNum;
+              Swal.fire({
+                title: "YOUR ORDER NO:" + orderNum,
+                text: " NTD:" + $("#orderTotal").text(),
+                confirmButtonColor: "#947055",
+                icon: "success",
+              });
+              $(".shopitem").remove();
+              countQty("coffeitem");
+              countQty("breaditem");
+              $(".endBtn").hide();
+              $("#orderTotal").text(0);
+              $("#dis").text(0);
+              $(".orbtn").removeClass("btn-light", "btn-outline-light");
+              $(".orbtn").addClass("btn-outline-light");
+            }
+          })
+        }else{
+          Swal.fire({
+            icon:"warning",
+            title:"Oh!",
+            text:"looks like the cart is empty",
+            confirmButtonColor:"gray"
+          })
+        }
+        });
+        $(".close").on("click", function () {
+          $("#promation").remove();
         });
       });
     </script>
