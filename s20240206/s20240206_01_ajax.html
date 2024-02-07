@@ -15,27 +15,50 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
 
   <body>
+    <ol id="myOl"></ol>
+    <table class="table table-hover w-50 m-auto">
+      <tbody id="mytable">
+
+      </tbody>
+      
+    </table>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
       integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../ignore/js/pw.js"></script>
+    
     <script>
       //啟用jquery
       $("document").ready(function () {
         let url = weatherUrl
-        $.ajax({
+                $.ajax({
         type:"get",
-        url:weatherUrl,
+        url:url,
         // data:"data",
         // dataType:"dataType",
         success:function(res){
+        let myOl = $('#myOl')
+        let myTable = $('#mytable')
+        let nowLocation = res.records.location;
+        $.each(nowLocation,function(key,val){
+          let nowID = key+1;
+          let stringID = nowID.toString().padStart(3,"0");
+          let nowLocationName = val.locationName;
+          let content=`
+          <tr>
+          <td class="text-center w-50">${stringID}</td>
+<td>${nowLocationName}</td>
+</tr>
+          `
+          myTable.append(content)
+        })
           console.log('res',res)
         }
       })
